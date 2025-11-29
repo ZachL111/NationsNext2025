@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NationsNext | The Future is Funded Here</title>
+    <title>NationsNext | Empowering the Future</title>
     
-    <!-- Google Fonts -->
+    <!-- Fonts: Montserrat (Headers) and Open Sans (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,735 +17,1166 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* --- THEME VARIABLES --- */
+        /* --- THEME CONFIGURATION --- */
         :root {
-            --navy: #0B2447;       /* Deep Presidential Blue */
-            --blue: #19376D;       /* Lighter Royal Blue */
-            --red: #D90429;        /* Vibrant Liberty Red */
-            --red-hover: #EF233C;
-            --white: #FFFFFF;
-            --off-white: #F8F9FA;
-            --gray: #8D99AE;
+            --primary-blue: #0a3161; /* Deep Royal Blue */
+            --primary-red: #b31942;  /* Crimson Red */
+            --accent-blue: #3b82f6;  /* Bright Blue for gradients */
+            --white: #ffffff;
+            --off-white: #f8fafc;
+            --gray: #64748b;
+            --dark: #1e293b;
             
-            --glass: rgba(255, 255, 255, 0.95);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.1);
-            --shadow-strong: 0 20px 50px -12px rgba(11, 36, 71, 0.25);
-            
-            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --glass: rgba(255, 255, 255, 0.85);
+            --gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-red) 100%);
         }
 
-        /* --- GLOBAL RESET --- */
+        /* --- RESET & TYPOGRAPHY --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             background-color: var(--off-white);
-            color: var(--navy);
-            line-height: 1.8;
+            color: var(--dark);
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, h5 {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
+            font-weight: 700;
+            color: var(--primary-blue);
             line-height: 1.2;
         }
 
-        a { text-decoration: none; transition: var(--transition); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { width: 100%; display: block; }
         ul { list-style: none; }
 
-        /* --- NAVIGATION --- */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 25px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: var(--transition);
-            background: transparent;
-        }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(15px);
-            padding: 15px 5%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-
-        /* Logo Styling - Red, White, Blue */
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        /* The dot is blue */
-        .logo-dot {
-            height: 12px; width: 12px;
-            background-color: var(--blue);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .navbar.scrolled .logo { color: var(--navy); }
-        .logo span { color: var(--red); } /* "Next" is red */
-
-        .nav-menu { display: flex; gap: 35px; }
-
-        .nav-link {
-            color: rgba(255,255,255,0.85);
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            bottom: -8px; left: 50%;
-            transform: translateX(-50%);
-            width: 0; height: 3px;
-            background-color: var(--red);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover { color: var(--white); }
-        .nav-link:hover::before { width: 100%; }
-
-        .navbar.scrolled .nav-link { color: var(--navy); }
-        .navbar.scrolled .nav-link:hover { color: var(--red); }
-
-        .nav-btn {
-            padding: 10px 25px;
-            border-radius: 50px;
-            background: var(--white);
-            color: var(--navy);
-            font-weight: 700;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .nav-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-        .navbar.scrolled .nav-btn { background: var(--navy); color: var(--white); }
-
-        /* --- HERO SECTION (ANIMATED) --- */
-        .hero {
-            position: relative;
-            height: 110vh; /* Extra height for spacing */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 0 20px;
-            color: var(--white);
-            overflow: hidden;
-            /* Animated Gradient Background */
-            background: linear-gradient(-45deg, #05162e, #0B2447, #19376D, #0B2447);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .section-padding { padding: 100px 0; }
+        
+        .text-center { text-align: center; }
+        
+        .text-gradient {
+            background: -webkit-linear-gradient(45deg, var(--primary-blue), var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Animated Particles in Background */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                radial-gradient(rgba(255,255,255,0.05) 2px, transparent 2px);
-            background-size: 50px 50px, 120px 120px;
-            background-position: 0 0, 20px 20px;
-            opacity: 0.6;
-            animation: moveParticles 20s linear infinite;
-        }
+        .highlight-red { color: var(--primary-red); }
 
-        @keyframes moveParticles {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-500px); }
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 900px;
-            margin-top: -80px; /* Pull up slightly to center vertically */
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            color: var(--white); /* Ensure contrast */
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            letter-spacing: -2px;
-            margin-bottom: 25px;
-            color: var(--white); /* FORCE WHITE TEXT */
-            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .hero h1 span {
-            color: transparent;
-            -webkit-text-stroke: 1px var(--white);
-            opacity: 0.8;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.9); /* High contrast gray/white */
-            max-width: 650px;
-            margin: 0 auto 50px;
-            font-weight: 300;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-
+        /* --- BUTTONS --- */
         .btn {
-            padding: 18px 45px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 0.9rem;
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 0.85rem;
             cursor: pointer;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .btn-primary {
-            background-color: var(--red);
-            color: var(--white);
+            z-index: 1;
             border: none;
-            box-shadow: 0 10px 30px rgba(217, 4, 41, 0.4);
         }
 
-        .btn-primary:hover {
-            background-color: var(--red-hover);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(217, 4, 41, 0.6);
+        .btn-red {
+            background: var(--primary-red);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(179, 25, 66, 0.4);
+        }
+
+        .btn-red::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--primary-blue);
+            transition: 0.4s;
+            z-index: -1;
+        }
+
+        .btn-red:hover::before { width: 100%; }
+        .btn-red:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(10, 49, 97, 0.4); }
+
+        .btn-blue {
+            background: var(--primary-blue);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(10, 49, 97, 0.4);
+        }
+
+        .btn-blue:hover {
+            background: var(--primary-red);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(179, 25, 66, 0.4);
         }
 
         .btn-outline {
-            background: transparent;
+            border: 2px solid var(--white);
             color: var(--white);
-            border: 2px solid rgba(255,255,255,0.5);
+            background: transparent;
         }
 
         .btn-outline:hover {
             background: var(--white);
-            color: var(--navy);
-            border-color: var(--white);
-            transform: translateY(-5px);
+            color: var(--primary-blue);
         }
 
-        /* --- STATS FLOATING BAR (GLASSMORPHISM) --- */
-        .stats-wrapper {
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 15px 0;
+            z-index: 1000;
+            transition: 0.4s;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-sm);
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i { color: var(--primary-red); }
+
+        .navbar.scrolled .logo { color: var(--primary-blue); }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+
+        .nav-links li a {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 3px;
+            background: var(--primary-red);
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover::after { width: 100%; }
+
+        .navbar.scrolled .nav-links li a { color: var(--primary-blue); }
+
+        .nav-btn {
+            padding: 10px 24px;
+            background: var(--primary-red);
+            color: var(--white) !important;
+            border-radius: 4px;
+            border: none;
+        }
+        .nav-btn:hover::after { width: 0 !important; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 49, 97, 0.8), rgba(10, 49, 97, 0.6)), url('https://images.unsplash.com/photo-1526634338276-805e263c9b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated particles overlay */
+        .particles {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- STATS TICKER --- */
+        .stats-ticker {
+            background: var(--white);
+            padding: 40px 0;
+            margin-top: -50px;
             position: relative;
             z-index: 10;
-            margin-top: -100px; /* Pull up to overlap hero */
-            padding: 0 5%;
-        }
-
-        .stats-container {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 60px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-strong);
+            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
+            gap: 20px;
+        }
+
+        .stat-item {
             text-align: center;
-            border-bottom: 5px solid var(--red);
+            border-right: 1px solid #e2e8f0;
         }
 
-        .stat-box h3 {
-            font-size: 3rem;
-            color: var(--navy);
-            margin-bottom: 5px;
+        .stat-item:last-child { border-right: none; }
+
+        .stat-item i {
+            font-size: 2rem;
+            color: var(--primary-red);
+            margin-bottom: 10px;
         }
 
-        .stat-box p {
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            font-family: 'Montserrat', sans-serif;
+            display: block;
+        }
+
+        .stat-label {
             color: var(--gray);
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* --- SECTIONS COMMON --- */
-        section {
-            padding: 140px 5%; /* Generous Spacing */
-            position: relative;
-        }
-
+        /* --- SECTION HEADERS --- */
         .section-header {
             text-align: center;
+            margin-bottom: 70px;
             max-width: 700px;
-            margin: 0 auto 80px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .section-header h2 {
-            font-size: 3rem;
-            color: var(--navy);
-            margin-bottom: 20px;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-red);
+            margin: 10px auto 0;
+            border-radius: 2px;
         }
 
         .section-header p {
-            color: var(--gray);
             font-size: 1.1rem;
-        }
-
-        /* --- FEATURED SECTION --- */
-        .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 50px;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
-            position: relative;
-            top: 0;
-        }
-
-        .card:hover {
-            top: -15px;
-            box-shadow: var(--shadow-strong);
-        }
-
-        .card-img-wrapper {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .card-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .card:hover .card-img-wrapper img {
-            transform: scale(1.1);
-        }
-
-        .category-tag {
-            position: absolute;
-            top: 20px; right: 20px;
-            background: var(--white);
-            color: var(--navy);
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .card-body { padding: 35px; }
-
-        .card-body h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .card-body p {
             color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
         }
 
-        .progress-area { margin-bottom: 25px; }
-        .progress-bar {
-            height: 8px;
-            background: #EAEAEA;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-        .progress-fill {
-            height: 100%;
-            background: var(--red);
-            border-radius: 10px;
-        }
-        .stats-row {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--navy);
-        }
-
-        .card-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--off-white);
-            border: none;
-            color: var(--navy);
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .card-btn:hover { background: var(--navy); color: var(--white); }
-
-        /* --- ABOUT PREVIEW --- */
-        .about-section {
-            background-color: var(--white);
+        /* --- ABOUT / MISSION --- */
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 60px;
             align-items: center;
+        }
+
+        .about-img-wrapper {
+            position: relative;
         }
 
         .about-img {
+            border-radius: 10px;
+            box-shadow: var(--shadow-lg);
+            z-index: 2;
             position: relative;
         }
-        
-        .about-img img {
-            border-radius: 20px;
-            box-shadow: var(--shadow-strong);
-        }
 
-        /* Decorative colored square behind image */
-        .about-img::before {
-            content: '';
+        .about-shape {
             position: absolute;
-            width: 100%; height: 100%;
-            background: var(--red);
-            top: 30px; left: -30px;
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0.1;
+            top: -20px; left: -20px;
+            width: 100px; height: 100px;
+            background: var(--primary-red);
+            z-index: 1;
+            border-radius: 10px;
         }
 
-        .about-content h2 { margin-bottom: 25px; }
-        .about-content p { margin-bottom: 20px; color: var(--gray); font-size: 1.1rem; }
-        
+        .about-shape-2 {
+            position: absolute;
+            bottom: -20px; right: -20px;
+            width: 150px; height: 150px;
+            background: #e2e8f0;
+            z-index: 1;
+            border-radius: 50%;
+        }
+
         .check-list li {
             margin-bottom: 15px;
-            font-weight: 600;
             display: flex;
             align-items: center;
+            font-size: 1.1rem;
+            color: var(--dark);
         }
-        .check-list i {
-            color: var(--red);
+
+        .check-list li i {
+            color: var(--primary-red);
             margin-right: 15px;
-            background: rgba(217, 4, 41, 0.1);
+            background: rgba(179, 25, 66, 0.1);
             width: 30px; height: 30px;
+            display: flex; justify-content: center; align-items: center;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
             font-size: 0.8rem;
         }
 
-        /* --- CTA SECTION --- */
-        .cta {
-            background: var(--navy);
-            color: var(--white);
-            text-align: center;
-            padding: 100px 20px;
-            background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Subtle texture */
+        /* --- HOW IT WORKS (Process) --- */
+        .process-section {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
         }
         
-        .cta h2 { font-size: 3.5rem; margin-bottom: 20px; color: var(--white); }
-        .cta p { max-width: 600px; margin: 0 auto 40px; opacity: 0.8; font-size: 1.2rem; }
+        /* Connecting Line */
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px; left: 0; width: 100%; height: 3px;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+
+        .step-card {
+            background: var(--white);
+            width: 23%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 10px;
+        }
+
+        .step-icon {
+            width: 80px; height: 80px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 25px;
+            border: 5px solid var(--white);
+            box-shadow: 0 0 0 3px #e2e8f0;
+            transition: 0.3s;
+        }
+
+        .step-card:hover .step-icon {
+            background: var(--primary-red);
+            transform: scale(1.1);
+            box-shadow: 0 0 0 5px var(--primary-red);
+        }
+
+        .step-card h4 { margin-bottom: 10px; font-size: 1.2rem; }
+        .step-card p { font-size: 0.95rem; color: var(--gray); }
+
+        /* --- FEATURED IDEAS --- */
+        .ideas-section { background: #f1f5f9; }
+
+        .ideas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .idea-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .idea-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px; left: 20px;
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        .idea-img-box {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .idea-img-box img {
+            transition: 0.5s;
+        }
+
+        .idea-card:hover .idea-img-box img { transform: scale(1.1); }
+
+        .idea-content { padding: 25px; }
+
+        .creator-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .creator-info img {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .progress-area { margin: 20px 0; }
+        
+        .progress-bar-bg {
+            background: #e2e8f0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 4px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        /* --- EVENTS SECTION --- */
+        .events-section {
+            background: var(--primary-blue);
+            color: var(--white);
+            position: relative;
+        }
+
+        /* Wave Separator Top */
+        .wave-top {
+            position: absolute;
+            top: -1px; left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .wave-top svg {
+            position: relative;
+            display: block;
+            width: calc(157% + 1.3px);
+            height: 80px;
+        }
+        .wave-top .shape-fill { fill: #f1f5f9; }
+
+        .events-section .section-header h2 { color: var(--white); }
+        .events-section .section-header h2::after { background: var(--white); }
+        .events-section .section-header p { color: #cbd5e1; }
+
+        .event-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex;
+            padding: 20px;
+            margin-bottom: 25px;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .event-card:hover { background: rgba(255,255,255,0.1); }
+
+        .event-date-box {
+            background: var(--white);
+            color: var(--primary-blue);
+            width: 90px;
+            height: 90px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 25px;
+        }
+
+        .event-date-box .day { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+        .event-date-box .month { font-size: 0.85rem; text-transform: uppercase; font-weight: 700; color: var(--primary-red); }
+
+        .event-info h3 { color: var(--white); font-size: 1.3rem; margin-bottom: 5px; }
+        .event-info p { font-size: 0.9rem; color: #cbd5e1; margin-bottom: 10px; }
+        .event-meta { font-size: 0.85rem; color: #94a3b8; }
+        .event-meta i { margin-right: 5px; color: var(--primary-red); }
+
+        /* --- IMPACT / TESTIMONIALS --- */
+        .impact-section { background: var(--white); }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--off-white);
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 2rem;
+            color: rgba(10, 49, 97, 0.1);
+            position: absolute;
+            top: 20px; right: 20px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .user-profile img {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        /* --- PARTNERS --- */
+        .partners-strip {
+            padding: 40px 0;
+            background: var(--white);
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .partners-flex {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0.6;
+            gap: 30px;
+        }
+        .partner-logo { font-size: 1.5rem; font-weight: 700; color: var(--gray); font-family: 'Montserrat', sans-serif; }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            background: linear-gradient(rgba(179, 25, 66, 0.9), rgba(10, 49, 97, 0.9)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 120px 0;
+            text-align: center;
+            color: var(--white);
+        }
 
         /* --- FOOTER --- */
         footer {
-            background: #05162e; /* Very dark blue */
-            color: #bdc3c7;
-            padding: 80px 5% 30px;
+            background: #020617;
+            color: #94a3b8;
+            padding-top: 80px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 60px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding-bottom: 60px;
         }
 
-        .footer-info p { margin-top: 20px; line-height: 1.6; opacity: 0.7; }
-
-        .footer-col h4 { color: var(--white); margin-bottom: 25px; font-size: 1.1rem; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a:hover { color: var(--red); padding-left: 5px; }
-
-        .newsletter input {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+        .footer-logo {
             color: var(--white);
-            border-radius: 5px;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        .copyright {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 30px;
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a:hover { color: var(--primary-red); padding-left: 5px; }
+
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a {
+            width: 35px; height: 35px;
+            background: rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .social-links a:hover { background: var(--primary-red); color: var(--white); }
+
+        .newsletter-form {
+            position: relative;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        .newsletter-btn {
+            margin-top: 10px;
+            width: 100%;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .newsletter-btn:hover { background: var(--primary-red); }
+
+        .footer-bottom {
+            background: #000;
             text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.6;
+            padding: 20px;
+            font-size: 0.85rem;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 3.5rem; }
-            .stats-container { grid-template-columns: 1fr 1fr; gap: 30px; padding: 40px; }
-            .about-section { grid-template-columns: 1fr; gap: 50px; }
-            .about-img { order: -1; }
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .hero h1 { font-size: 3rem; }
+            .stats-ticker { grid-template-columns: 1fr 1fr; }
+            .stat-item { border-right: none; margin-bottom: 30px; }
+            .steps-container { flex-direction: column; }
+            .steps-container::before { width: 3px; height: 100%; left: 50%; top: 0; transform: translateX(-50%); }
+            .step-card { width: 100%; margin-bottom: 40px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-img-wrapper { order: -1; margin-bottom: 40px; }
+            
+            .hamburger { display: block; font-size: 1.5rem; color: var(--white); cursor: pointer; }
+            .navbar.scrolled .hamburger { color: var(--primary-blue); }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                clip-path: circle(0% at 100% 0);
+                transition: 0.5s ease-in-out;
+            }
+            .nav-links.active { clip-path: circle(150% at 100% 0); }
+            .nav-links li a { color: var(--primary-blue); font-size: 1.2rem; }
         }
-
-        @media (max-width: 768px) {
-            .navbar { background-color: var(--navy); padding: 15px 20px; }
-            .nav-menu { display: none; } /* Hide menu for simplicity in this demo, real world needs JS toggle */
-            .hero h1 { font-size: 2.8rem; }
-            .btn-group { flex-direction: column; width: 100%; }
-            .btn { width: 100%; }
-            .stats-container { grid-template-columns: 1fr; margin-top: -50px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-            section { padding: 80px 5%; }
-        }
+        
+        @media (min-width: 969px) { .hamburger { display: none; } }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- NAVIGATION -->
     <nav class="navbar">
-        <a href="index.html" class="logo">
-            Nations<span style="color:var(--red)">Next</span><div class="logo-dot"></div>
-        </a>
-        
-        <ul class="nav-menu">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="about.html" class="nav-link">About</a></li>
-            <li><a href="submit.html" class="nav-link">Submit Idea</a></li>
-            <li><a href="discover.html" class="nav-link">Discover</a></li>
-            <li><a href="events.html" class="nav-link">Events</a></li>
-        </ul>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-flag-usa"></i> NationsNext
+            </a>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
 
-        <a href="connect.html" class="nav-btn">Connect / Donate</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Our Mission</a></li>
+                <li><a href="discover.html">Discover Ideas</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="submit.html" class="nav-btn">Submit Idea</a></li>
+                <li><a href="connect.html" class="nav-btn" style="background:var(--primary-blue)">Donate</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- HERO SECTION -->
     <header class="hero">
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
-            <span class="badge">Democratizing Opportunity</span>
-            <h1>The Next Great<br>American <span>Idea</span><br>Starts Here.</h1>
-            <p>We bridge the gap between under-resourced youth visionaries and the benefactors ready to fund their future.</p>
+        <div class="particles" id="particles-js"></div> <!-- Placeholder for particle scripts if added later -->
+        
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <span class="hero-label">The Platform for American Youth</span>
+            <h1>From Underprivileged to <span class="text-gradient">Unstoppable</span>.</h1>
+            <p>We bridge the gap between talented youth from underserved communities and the benefactors who can fuel their American Dream.</p>
             
-            <div class="btn-group">
-                <a href="submit.html" class="btn btn-primary">I Have an Idea</a>
-                <a href="discover.html" class="btn btn-outline">Support Youth</a>
+            <div style="margin-top: 30px;">
+                <a href="submit.html" class="btn btn-red" style="margin-right: 15px;">I Have a Dream</a>
+                <a href="discover.html" class="btn btn-outline">I Want to Help</a>
             </div>
         </div>
     </header>
 
-    <!-- FLOATING STATS BAR -->
-    <div class="stats-wrapper">
-        <div class="stats-container" data-aos="fade-up" data-aos-delay="200">
-            <div class="stat-box">
-                <h3 class="counter" data-target="15000">0</h3>
-                <p>Youth Connected</p>
+    <!-- STATS TICKER -->
+    <div class="container">
+        <div class="stats-ticker" data-aos="fade-up" data-aos-offset="-50">
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <span class="stat-number counter" data-target="1500">0</span>
+                <span class="stat-label">Lives Impacted</span>
             </div>
-            <div class="stat-box">
-                <h3 class="counter" data-target="3400">0</h3>
-                <p>Projects Funded</p>
+            <div class="stat-item">
+                <i class="fas fa-lightbulb"></i>
+                <span class="stat-number counter" data-target="320">0</span>
+                <span class="stat-label">Projects Funded</span>
             </div>
-            <div class="stat-box">
-                <h3>$<span class="counter" data-target="5">0</span>M+</h3>
-                <p>Capital Raised</p>
+            <div class="stat-item">
+                <i class="fas fa-hand-holding-dollar"></i>
+                <span class="stat-number">$<span class="counter" data-target="2">0</span>M+</span>
+                <span class="stat-label">Donated</span>
             </div>
-            <div class="stat-box">
-                <h3 class="counter" data-target="50">0</h3>
-                <p>States Active</p>
+            <div class="stat-item">
+                <i class="fas fa-city"></i>
+                <span class="stat-number counter" data-target="15">0</span>
+                <span class="stat-label">Cities Reached</span>
             </div>
         </div>
     </div>
 
-    <!-- ABOUT SECTION -->
-    <section class="about-section">
-        <div class="about-img" data-aos="fade-right">
-            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Team meeting">
-        </div>
-        <div class="about-content" data-aos="fade-left">
-            <span style="color:var(--red); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:0.9rem;">Our Mission</span>
-            <h2>Talent is Universal.<br>Opportunity is Not.</h2>
-            <p>In every corner of our country, there are young minds with world-changing ideas—but without the network to bring them to life. NationsNext destroys these barriers.</p>
-            
-            <ul class="check-list">
-                <li><i class="fas fa-check"></i> Direct-to-youth funding (Zero overhead)</li>
-                <li><i class="fas fa-check"></i> Verified project tracking & updates</li>
-                <li><i class="fas fa-check"></i> Mentorship from industry leaders</li>
-            </ul>
-            
-            <a href="about.html" style="color: var(--navy); font-weight: 700; margin-top: 20px; display: inline-block; border-bottom: 2px solid var(--red);">Read Our Story</a>
-        </div>
-    </section>
-
-    <!-- FEATURED PROJECTS -->
-    <section class="featured" style="background-color: #f1f5f9;">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Discover Potential</h2>
-            <p>Real projects, real people, real impact. Fund the future today.</p>
-        </div>
-
-        <div class="featured-grid">
-            <!-- Card 1 -->
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-img-wrapper">
-                    <span class="category-tag">STEM</span>
-                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Robotics">
+    <!-- MISSION SECTION -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img-wrapper" data-aos="fade-right">
+                    <div class="about-shape"></div>
+                    <img src="https://images.unsplash.com/photo-1577896335477-52d7efd95565?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students working" class="about-img">
+                    <div class="about-shape-2"></div>
                 </div>
-                <div class="card-body">
-                    <h3>The Bronx AI Lab</h3>
-                    <p>Building an accessible AI learning center for high school students in the Bronx.</p>
-                    <div class="progress-area">
-                        <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
-                        <div class="stats-row">
-                            <span>$3,750 Raised</span>
-                            <span>75%</span>
-                        </div>
-                    </div>
+                
+                <div class="about-content" data-aos="fade-left">
+                    <h5 class="highlight-red" style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Who We Are</h5>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Restoring Opportunity in Every Neighborhood</h2>
+                    <p style="color:var(--gray); margin-bottom: 25px;">
+                        Talent is equally distributed across our nation, but opportunity is not. NationsNext exists to dismantle the financial barriers that hold back our brightest young minds. We aren't just a crowdfunding platform; we are a movement dedicated to mentorship, funding, and real-world connection.
+                    </p>
+                    
+                    <ul class="check-list">
+                        <li><i class="fas fa-check"></i> Direct connection to verified donors.</li>
+                        <li><i class="fas fa-check"></i> Mentorship from industry leaders.</li>
+                        <li><i class="fas fa-check"></i> 100% transparency in fund allocation.</li>
+                    </ul>
+                    
+                    <a href="about.html" class="btn btn-blue" style="margin-top: 30px;">Read Our Full Story</a>
                 </div>
-                <button class="card-btn">View Project</button>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <div class="card-img-wrapper">
-                    <span class="category-tag">Environment</span>
-                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Garden">
-                </div>
-                <div class="card-body">
-                    <h3>Urban Vertical Gardens</h3>
-                    <p>Solving food deserts in Chicago with sustainable vertical farming technology.</p>
-                    <div class="progress-area">
-                        <div class="progress-bar"><div class="progress-fill" style="width: 45%"></div></div>
-                        <div class="stats-row">
-                            <span>$1,350 Raised</span>
-                            <span>45%</span>
-                        </div>
-                    </div>
-                </div>
-                <button class="card-btn">View Project</button>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <div class="card-img-wrapper">
-                    <span class="category-tag">Music</span>
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Music">
-                </div>
-                <div class="card-body">
-                    <h3>Symphony for All</h3>
-                    <p>Providing instruments and free lessons to 50 students in Detroit.</p>
-                    <div class="progress-area">
-                        <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
-                        <div class="stats-row">
-                            <span>$9,000 Raised</span>
-                            <span>90%</span>
-                        </div>
-                    </div>
-                </div>
-                <button class="card-btn">View Project</button>
             </div>
         </div>
     </section>
 
-    <!-- CALL TO ACTION -->
-    <section class="cta">
-        <div data-aos="zoom-in">
-            <h2>Join the Movement</h2>
-            <p>Whether you have an idea or the means to fund one, you belong here.</p>
-            <a href="connect.html" class="btn btn-primary" style="background: var(--white); color: var(--navy);">Get Started Now</a>
+    <!-- PROCESS SECTION -->
+    <section class="section-padding process-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>How It Works</h2>
+                <p>A simple, transparent path from idea to reality.</p>
+            </div>
+
+            <div class="steps-container">
+                <!-- Step 1 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                    <h4>1. Join</h4>
+                    <p>Create a profile as a Creator (Youth) or a Benefactor (Donor).</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-icon"><i class="fas fa-pen-fancy"></i></div>
+                    <h4>2. Submit</h4>
+                    <p>Pitch your business idea, community project, or educational need.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>3. Verify</h4>
+                    <p>Our team vets every submission for safety and authenticity.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                    <h4>4. Launch</h4>
+                    <p>Get funded, receive mentorship, and launch your dream.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISCOVER / FEATURED PROJECTS -->
+    <section class="section-padding ideas-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Featured Visionaries</h2>
+                <p>These young leaders are ready to change the world. They just need you.</p>
+            </div>
+
+            <div class="ideas-grid">
+                <!-- Card 1 -->
+                <div class="idea-card" data-aos="zoom-in" data-aos-delay="100">
+                    <span class="card-badge">Tech</span>
+                    <div class="idea-img-box">
+                        <img src="https://images.unsplash.com/photo-1555601568-c9e613090631?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coding">
+                    </div>
+                    <div class="idea-content">
+                        <h3>Code for the Community</h3>
+                        <div class="creator-info">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                            <span>By David M. (17) • Chicago, IL</span>
+                        </div>
+                        <p style="color:var(--gray); font-size:0.95rem;">Developing a free app to help local food banks coordinate donations more efficiently.</p>
+                        
+                        <div class="progress-area">
+                            <div class="progress-bar-bg"><div class="progress-fill" style="width: 80%;"></div></div>
+                            <div class="stats-row">
+                                <span>$4,000 Raised</span>
+                                <span>80%</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline" style="width:100%; border-color:var(--primary-blue); color:var(--primary-blue)">View Project</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="idea-card" data-aos="zoom-in" data-aos-delay="200">
+                    <span class="card-badge">Arts</span>
+                    <div class="idea-img-box">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Art">
+                    </div>
+                    <div class="idea-content">
+                        <h3>Inner City Mural Project</h3>
+                        <div class="creator-info">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                            <span>By Sarah J. (19) • Detroit, MI</span>
+                        </div>
+                        <p style="color:var(--gray); font-size:0.95rem;">Beautifying five city blocks with murals that tell the history of our neighborhood.</p>
+                        
+                        <div class="progress-area">
+                            <div class="progress-bar-bg"><div class="progress-fill" style="width: 45%;"></div></div>
+                            <div class="stats-row">
+                                <span>$1,200 Raised</span>
+                                <span>45%</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline" style="width:100%; border-color:var(--primary-blue); color:var(--primary-blue)">View Project</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="idea-card" data-aos="zoom-in" data-aos-delay="300">
+                    <span class="card-badge">Science</span>
+                    <div class="idea-img-box">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Science">
+                    </div>
+                    <div class="idea-content">
+                        <h3>Clean Water Filter</h3>
+                        <div class="creator-info">
+                            <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="User">
+                            <span>By Marcus T. (16) • Atlanta, GA</span>
+                        </div>
+                        <p style="color:var(--gray); font-size:0.95rem;">Creating an affordable, portable water filtration system for emergency kits.</p>
+                        
+                        <div class="progress-area">
+                            <div class="progress-bar-bg"><div class="progress-fill" style="width: 95%;"></div></div>
+                            <div class="stats-row">
+                                <span>$2,850 Raised</span>
+                                <span>95%</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline" style="width:100%; border-color:var(--primary-blue); color:var(--primary-blue)">View Project</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="discover.html" class="btn btn-red">Explore All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS SECTION -->
+    <section class="section-padding events-section">
+        <!-- SVG Wave Separator -->
+        <div class="wave-top">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="section-header">
+                <h2>Upcoming Events</h2>
+                <p>Connect with donors, mentors, and creators in person.</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <!-- Event 1 -->
+                <div class="event-card" data-aos="fade-left">
+                    <div class="event-date-box">
+                        <span class="day">15</span>
+                        <span class="month">Nov</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>National Youth Summit</h3>
+                        <p>A gathering of top investors looking for the next big idea.</p>
+                        <div class="event-meta">
+                            <i class="fas fa-map-marker-alt"></i> Washington D.C. &nbsp;&nbsp;|&nbsp;&nbsp; <i class="far fa-clock"></i> 9:00 AM - 5:00 PM
+                        </div>
+                    </div>
+                    <div style="margin-left: auto; display: flex; align-items: center;">
+                        <a href="#" class="btn btn-outline" style="font-size: 0.7rem; padding: 10px 20px;">RSVP</a>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event-card" data-aos="fade-left" data-aos-delay="100">
+                    <div class="event-date-box">
+                        <span class="day">02</span>
+                        <span class="month">Dec</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Winter Fundraising Gala</h3>
+                        <p>Celebrating the success stories of 2023 with black-tie networking.</p>
+                        <div class="event-meta">
+                            <i class="fas fa-map-marker-alt"></i> New York City &nbsp;&nbsp;|&nbsp;&nbsp; <i class="far fa-clock"></i> 7:00 PM - 11:00 PM
+                        </div>
+                    </div>
+                    <div style="margin-left: auto; display: flex; align-items: center;">
+                        <a href="#" class="btn btn-outline" style="font-size: 0.7rem; padding: 10px 20px;">Tickets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section-padding impact-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Voices of Change</h2>
+                <p>Real stories from the NationsNext community.</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="text-gray">"I had the idea for a hydroponic garden for my school, but no funds. NationsNext connected me with a donor who not only funded it but taught me how to scale it."</p>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User">
+                        <div>
+                            <h5 style="color:var(--primary-blue); font-size: 0.95rem;">Jasmine W.</h5>
+                            <span style="font-size: 0.8rem; color:var(--gray);">Student Beneficiary</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="text-gray">"As a retired CEO, I wanted to give back directly. This platform lets me see exactly where my money goes and talk to the brilliant kids using it."</p>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/men/88.jpg" alt="User">
+                        <div>
+                            <h5 style="color:var(--primary-blue); font-size: 0.95rem;">Robert C.</h5>
+                            <span style="font-size: 0.8rem; color:var(--gray);">Donor & Mentor</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="text-gray">"The verification process gave me peace of mind. Knowing these projects are real and the students are vetted makes donating so much easier."</p>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="User">
+                        <div>
+                            <h5 style="color:var(--primary-blue); font-size: 0.95rem;">Elena R.</h5>
+                            <span style="font-size: 0.8rem; color:var(--gray);">Regular Donor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="container" data-aos="zoom-in">
+            <h2 style="color: var(--white); font-size: 3rem; margin-bottom: 20px;">Ready to Make History?</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Whether you are a dreamer needing a hand, or a hand willing to lift others, your journey starts here.
+            </p>
+            <div>
+                <a href="submit.html" class="btn btn-red" style="margin: 10px;">Submit an Idea</a>
+                <a href="connect.html" class="btn btn-outline" style="margin: 10px;">Become a Partner</a>
+            </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-info">
-                <a href="#" class="logo">Nations<span style="color:var(--red)">Next</span><div class="logo-dot"></div></a>
-                <p>Empowering the next generation of builders, dreamers, and leaders through connection and funding.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Platform</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="discover.html">Projects</a></li>
-                    <li><a href="submit.html">Submit Idea</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="connect.html">Contact</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Newsletter</h4>
-                <div class="newsletter">
-                    <input type="email" placeholder="Your email address">
-                    <button class="btn btn-primary" style="width:100%; padding:12px;">Subscribe</button>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-flag-usa" style="color:var(--primary-red)"></i> NationsNext
+                    </a>
+                    <p>Building a stronger nation by empowering the next generation of leaders, innovators, and creators.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="discover.html">Projects</a></li>
+                        <li><a href="events.html">Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="connect.html">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p style="font-size: 0.85rem; margin-bottom: 10px;">Weekly success stories directly to you.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter email address">
+                        <button type="button" class="newsletter-btn">Subscribe</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2023 NationsNext. All Rights Reserved.
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2023 NationsNext. All Rights Reserved. Built for the Future.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
+    <!-- JAVASCRIPT -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Init Animation
+        // 1. Initialize Animations
         AOS.init({
-            offset: 100,
+            offset: 120,
             duration: 800,
-            easing: 'ease-out-cubic',
-            once: true
+            easing: 'ease-in-out-cubic',
+            once: true, // Animation happens only once
+            mirror: false
         });
 
-        // Sticky Navbar Effect
+        // 2. Navbar Scroll Effect
+        const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
@@ -753,20 +1184,37 @@
             }
         });
 
-        // Animated Counters
+        // 3. Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            const icon = hamburger.querySelector('i');
+            if(navLinks.classList.contains('active')){
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // 4. Number Counter Animation
         const counters = document.querySelectorAll('.counter');
-        const speed = 200;
+        const speed = 50; 
 
         const animateCounters = () => {
             counters.forEach(counter => {
                 const updateCount = () => {
                     const target = +counter.getAttribute('data-target');
                     const count = +counter.innerText;
-                    const inc = target / speed;
+                    const inc = Math.ceil(target / speed); // Calculate increment
 
                     if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 20);
+                        counter.innerText = count + inc;
+                        setTimeout(updateCount, 30);
                     } else {
                         counter.innerText = target;
                     }
@@ -775,19 +1223,23 @@
             });
         };
 
-        // Trigger counters when scrolled into view
+        // Trigger counters when stats section is visible
         let counted = false;
-        const statsSection = document.querySelector('.stats-container');
-        window.addEventListener('scroll', () => {
-            if (statsSection && !counted) {
-                const sectionPos = statsSection.getBoundingClientRect().top;
-                const screenPos = window.innerHeight;
-                if (sectionPos < screenPos) {
-                    animateCounters();
-                    counted = true;
-                }
+        const statsSection = document.querySelector('.stats-ticker');
+        
+        const checkScroll = () => {
+            if(!statsSection) return;
+            const triggerBottom = window.innerHeight * 0.8;
+            const sectionTop = statsSection.getBoundingClientRect().top;
+
+            if(sectionTop < triggerBottom && !counted) {
+                animateCounters();
+                counted = true;
+                window.removeEventListener('scroll', checkScroll);
             }
-        });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
     </script>
 </body>
 </html>
