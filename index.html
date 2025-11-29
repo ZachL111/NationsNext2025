@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NationsNext | The Future is Funded Here</title>
     
-    <!-- Google Fonts: Montserrat (Headings) & Open Sans (Body) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,859 +17,733 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* --- CSS VARIABLES & THEME --- */
+        /* --- THEME VARIABLES --- */
         :root {
-            /* Patriotic Modern Palette */
-            --blue-primary: #0a192f; /* Deep Navy */
-            --blue-secondary: #1e3a8a; /* Royal Blue */
-            --red-accent: #dc2626; /* Vibrant Crimson */
-            --red-dark: #b91c1c;
-            --white: #ffffff;
-            --off-white: #f8fafc;
-            --gray-light: #e2e8f0;
-            --gray-text: #64748b;
+            --navy: #0B2447;       /* Deep Presidential Blue */
+            --blue: #19376D;       /* Lighter Royal Blue */
+            --red: #D90429;        /* Vibrant Liberty Red */
+            --red-hover: #EF233C;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --gray: #8D99AE;
             
-            /* Effects */
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-glow: 0 0 20px rgba(220, 38, 38, 0.4); /* Red glow */
-            --gradient-hero: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(30, 58, 138, 0.9) 100%);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --glass: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.1);
+            --shadow-strong: 0 20px 50px -12px rgba(11, 36, 71, 0.25);
+            
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         /* --- GLOBAL RESET --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--off-white);
-            color: var(--blue-primary);
+            color: var(--navy);
+            line-height: 1.8;
             overflow-x: hidden;
-            line-height: 1.7;
         }
 
-        h1, h2, h3, h4, h5 {
+        h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--blue-primary);
+            font-weight: 800;
+            line-height: 1.2;
         }
 
         a { text-decoration: none; transition: var(--transition); }
         ul { list-style: none; }
-        img { display: block; max-width: 100%; }
 
-        /* --- PRELOADER --- */
-        .preloader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--blue-primary);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-        .loader-content { text-align: center; }
-        .loader-logo { 
-            font-family: 'Montserrat', sans-serif; 
-            font-weight: 800; 
-            font-size: 3rem; 
-            color: var(--white);
-            margin-bottom: 20px;
-        }
-        .loader-logo span { color: var(--red-accent); }
-        .spinner {
-            width: 50px; height: 50px;
-            border: 5px solid rgba(255,255,255,0.3);
-            border-top: 5px solid var(--red-accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-block;
-            padding: 14px 35px;
-            border-radius: 5px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn-red {
-            background-color: var(--red-accent);
-            color: var(--white);
-            border: 2px solid var(--red-accent);
-            box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
-        }
-
-        .btn-red::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 0%; height: 100%;
-            background-color: var(--white);
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .btn-red:hover { color: var(--red-accent); transform: translateY(-3px); }
-        .btn-red:hover::before { width: 100%; }
-
-        .btn-white {
-            background-color: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-white:hover {
-            background-color: var(--white);
-            color: var(--blue-primary);
-            box-shadow: 0 0 20px rgba(255,255,255,0.4);
-        }
-
-        /* --- NAVBAR --- */
+        /* --- NAVIGATION --- */
         .navbar {
             position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 6%;
+            top: 0;
+            width: 100%;
+            padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            transition: 0.4s ease;
-        }
-        
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 6%;
-            box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            background: transparent;
         }
 
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 15px 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Logo Styling - Red, White, Blue */
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--white);
+            text-transform: uppercase;
             letter-spacing: -1px;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .logo span { color: var(--red-accent); }
-        
-        .navbar.scrolled .logo { color: var(--blue-primary); }
-
-        .nav-menu { display: flex; gap: 30px; }
-        
-        .nav-link {
-            color: rgba(255,255,255,0.9);
-            font-weight: 600;
-            font-size: 0.9rem;
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0; width: 0; height: 2px;
-            background: var(--red-accent);
-            transition: 0.3s ease;
-        }
-        .nav-link:hover::after { width: 100%; }
-        
-        .navbar.scrolled .nav-link { color: var(--blue-primary); }
-        
-        .hamburger { display: none; cursor: pointer; color: var(--white); font-size: 1.5rem; }
-        .navbar.scrolled .hamburger { color: var(--blue-primary); }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            background: var(--gradient-hero), url('https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            color: var(--white);
             display: flex;
             align-items: center;
-            position: relative;
-            padding: 0 6%;
-            overflow: hidden;
+            gap: 5px;
         }
-
-        /* Abstract Red/Blue Shapes in Hero */
-        .hero-shape {
-            position: absolute;
-            opacity: 0.2;
+        
+        /* The dot is blue */
+        .logo-dot {
+            height: 12px; width: 12px;
+            background-color: var(--blue);
             border-radius: 50%;
-            filter: blur(80px);
+            display: inline-block;
         }
-        .shape-1 { width: 400px; height: 400px; background: var(--blue-secondary); top: -100px; right: -100px; animation: float 6s ease-in-out infinite; }
-        .shape-2 { width: 300px; height: 300px; background: var(--red-accent); bottom: -50px; left: -50px; animation: float 8s ease-in-out infinite reverse; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(20px); }
+        .navbar.scrolled .logo { color: var(--navy); }
+        .logo span { color: var(--red); } /* "Next" is red */
+
+        .nav-menu { display: flex; gap: 35px; }
+
+        .nav-link {
+            color: rgba(255,255,255,0.85);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -8px; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 3px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover { color: var(--white); }
+        .nav-link:hover::before { width: 100%; }
+
+        .navbar.scrolled .nav-link { color: var(--navy); }
+        .navbar.scrolled .nav-link:hover { color: var(--red); }
+
+        .nav-btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            background: var(--white);
+            color: var(--navy);
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .nav-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        .navbar.scrolled .nav-btn { background: var(--navy); color: var(--white); }
+
+        /* --- HERO SECTION (ANIMATED) --- */
+        .hero {
+            position: relative;
+            height: 110vh; /* Extra height for spacing */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            color: var(--white);
+            overflow: hidden;
+            /* Animated Gradient Background */
+            background: linear-gradient(-45deg, #05162e, #0B2447, #19376D, #0B2447);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated Particles in Background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                radial-gradient(rgba(255,255,255,0.05) 2px, transparent 2px);
+            background-size: 50px 50px, 120px 120px;
+            background-position: 0 0, 20px 20px;
+            opacity: 0.6;
+            animation: moveParticles 20s linear infinite;
+        }
+
+        @keyframes moveParticles {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-500px); }
         }
 
         .hero-content {
-            max-width: 800px;
-            color: var(--white);
             z-index: 2;
+            max-width: 900px;
+            margin-top: -80px; /* Pull up slightly to center vertically */
         }
 
-        .hero-tag {
-            background: rgba(220, 38, 38, 0.2);
-            padding: 8px 16px;
-            border-radius: 30px;
-            border: 1px solid rgba(220, 38, 38, 0.5);
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 25px;
-            display: inline-block;
-            backdrop-filter: blur(5px);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            color: var(--white); /* Ensure contrast */
         }
 
         .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
+            font-size: 5rem;
+            letter-spacing: -2px;
             margin-bottom: 25px;
+            color: var(--white); /* FORCE WHITE TEXT */
             text-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            max-width: 600px;
+
+        .hero h1 span {
+            color: transparent;
+            -webkit-text-stroke: 1px var(--white);
+            opacity: 0.8;
         }
 
-        .btn-group { display: flex; gap: 20px; }
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9); /* High contrast gray/white */
+            max-width: 650px;
+            margin: 0 auto 50px;
+            font-weight: 300;
+        }
 
-        /* --- SECTION STYLES --- */
-        section { padding: 100px 6%; position: relative; }
-        
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--red);
+            color: var(--white);
+            border: none;
+            box-shadow: 0 10px 30px rgba(217, 4, 41, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--red-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(217, 4, 41, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--navy);
+            border-color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        /* --- STATS FLOATING BAR (GLASSMORPHISM) --- */
+        .stats-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -100px; /* Pull up to overlap hero */
+            padding: 0 5%;
+        }
+
+        .stats-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+            border-bottom: 5px solid var(--red);
+        }
+
+        .stat-box h3 {
+            font-size: 3rem;
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .stat-box p {
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- SECTIONS COMMON --- */
+        section {
+            padding: 140px 5%; /* Generous Spacing */
+            position: relative;
+        }
+
         .section-header {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto 70px;
+            margin: 0 auto 80px;
         }
-        
+
         .section-header h2 {
             font-size: 3rem;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
+            color: var(--navy);
+            margin-bottom: 20px;
         }
-        
-        .section-header h2::after {
-            content: '';
-            display: block;
-            width: 60px; height: 4px;
-            background: var(--red-accent);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-        
-        .section-header p { color: var(--gray-text); font-size: 1.1rem; }
 
-        /* --- STATS SECTION --- */
-        .stats-section {
-            background-color: var(--white);
-            margin-top: -80px;
-            padding: 50px 6%;
-            position: relative;
-            z-index: 10;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            width: 90%;
-            margin-left: 5%;
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* --- FEATURED SECTION --- */
+        .featured-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
         }
 
-        .stat-item { text-align: center; border-right: 1px solid var(--gray-light); }
-        .stat-item:last-child { border: none; }
-        .stat-item h3 { font-size: 2.5rem; color: var(--blue-secondary); font-weight: 800; }
-        .stat-item p { color: var(--gray-text); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            top: 0;
+        }
 
-        /* --- ABOUT / MISSION --- */
-        .mission {
+        .card:hover {
+            top: -15px;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .card-img-wrapper {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: var(--white);
+            color: var(--navy);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .card-body { padding: 35px; }
+
+        .card-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .progress-area { margin-bottom: 25px; }
+        .progress-bar {
+            height: 8px;
+            background: #EAEAEA;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--red);
+            border-radius: 10px;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--navy);
+        }
+
+        .card-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--off-white);
+            border: none;
+            color: var(--navy);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .card-btn:hover { background: var(--navy); color: var(--white); }
+
+        /* --- ABOUT PREVIEW --- */
+        .about-section {
+            background-color: var(--white);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
         }
 
-        .mission-text h4 { color: var(--red-accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; font-size: 0.9rem; }
-        .mission-text h2 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 25px; }
-        .mission-text p { margin-bottom: 20px; color: var(--gray-text); }
+        .about-img {
+            position: relative;
+        }
         
-        .mission-img { position: relative; }
-        .mission-img img { border-radius: 10px; box-shadow: var(--shadow-lg); }
-        .mission-img::before {
+        .about-img img {
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+        }
+
+        /* Decorative colored square behind image */
+        .about-img::before {
             content: '';
             position: absolute;
-            top: -20px; left: -20px;
             width: 100%; height: 100%;
-            border: 5px solid var(--red-accent);
-            border-radius: 10px;
+            background: var(--red);
+            top: 30px; left: -30px;
+            border-radius: 20px;
             z-index: -1;
+            opacity: 0.1;
         }
 
-        /* --- DISCOVER / CARDS --- */
-        .discover { background-color: #f1f5f9; }
+        .about-content h2 { margin-bottom: 25px; }
+        .about-content p { margin-bottom: 20px; color: var(--gray); font-size: 1.1rem; }
         
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .project-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 20px; right: 20px;
-            background: var(--white);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--blue-secondary);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        }
-
-        .card-img { height: 220px; width: 100%; object-fit: cover; }
-        
-        .card-content { padding: 30px; }
-        .card-content h3 { font-size: 1.4rem; margin-bottom: 10px; }
-        .card-content p { color: var(--gray-text); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; }
-        
-        .fund-bar-bg { width: 100%; height: 6px; background: #e2e8f0; border-radius: 3px; margin-bottom: 10px; }
-        .fund-bar-fill { height: 100%; background: var(--red-accent); border-radius: 3px; position: relative; }
-        .fund-bar-fill::after {
-            content: '';
-            position: absolute; right: 0; top: -3px;
-            width: 12px; height: 12px;
-            background: var(--white);
-            border: 3px solid var(--red-accent);
-            border-radius: 50%;
-        }
-
-        .card-stats { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--blue-primary); }
-
-        /* --- CONNECT / DONOR SECTION --- */
-        .connect {
-            background: var(--blue-primary);
-            color: var(--white);
-            overflow: hidden;
-        }
-        
-        .connect-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .connect h2 { color: var(--white); }
-        .connect h2::after { background: var(--white); margin: 10px 0 0; }
-        .connect p { color: rgba(255,255,255,0.7); }
-
-        .feature-list li {
-            margin-bottom: 20px;
+        .check-list li {
+            margin-bottom: 15px;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            font-size: 1.1rem;
         }
-        .feature-list i {
-            color: var(--red-accent);
-            background: rgba(255,255,255,0.1);
-            width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%;
+        .check-list i {
+            color: var(--red);
             margin-right: 15px;
+            background: rgba(217, 4, 41, 0.1);
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem;
         }
 
-        .glass-form {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        /* --- CTA SECTION --- */
+        .cta {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Subtle texture */
         }
-        .glass-form h3 { color: var(--white); margin-bottom: 20px; }
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: none;
-            background: rgba(255,255,255,0.9);
-            font-family: inherit;
-        }
-
-        /* --- EVENTS (Timeline) --- */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .timeline::after {
-            content: '';
-            position: absolute; width: 4px; background-color: var(--gray-light); top: 0; bottom: 0; left: 50%; margin-left: -2px;
-        }
-        .event-node {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-        .event-node.left { left: 0; text-align: right; }
-        .event-node.right { left: 50%; }
         
-        .event-node::after {
-            content: '';
-            position: absolute; width: 20px; height: 20px; right: -10px; background-color: var(--white); border: 4px solid var(--red-accent); top: 25px; border-radius: 50%; z-index: 1;
-        }
-        .event-node.right::after { left: -10px; }
-
-        .event-content {
-            padding: 20px 30px;
-            background-color: var(--white);
-            position: relative;
-            border-radius: 10px;
-            box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--blue-secondary);
-        }
-        .event-content h4 { margin-bottom: 5px; }
-        .date { color: var(--red-accent); font-weight: 700; font-size: 0.9rem; margin-bottom: 10px; display: block; }
-
-        /* --- FAQ SECTION --- */
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        .faq-item {
-            background: var(--white);
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-        }
-        .faq-question {
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            color: var(--blue-primary);
-            transition: var(--transition);
-        }
-        .faq-question:hover { background-color: #f8fafc; }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 20px;
-            color: var(--gray-text);
-            transition: max-height 0.3s ease-out;
-        }
-        .faq-answer p { padding-bottom: 20px; }
-        .faq-item.active .faq-answer { max-height: 200px; }
-        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .cta h2 { font-size: 3.5rem; margin-bottom: 20px; color: var(--white); }
+        .cta p { max-width: 600px; margin: 0 auto 40px; opacity: 0.8; font-size: 1.2rem; }
 
         /* --- FOOTER --- */
         footer {
-            background-color: var(--blue-primary);
-            color: #94a3b8;
-            padding-top: 80px;
+            background: #05162e; /* Very dark blue */
+            color: #bdc3c7;
+            padding: 80px 5% 30px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 40px;
-            padding: 0 6% 60px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
         }
+
+        .footer-info p { margin-top: 20px; line-height: 1.6; opacity: 0.7; }
 
         .footer-col h4 { color: var(--white); margin-bottom: 25px; font-size: 1.1rem; }
         .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a:hover { color: var(--red-accent); padding-left: 5px; }
-        
-        .social-links a {
-            display: inline-flex; justify-content: center; align-items: center;
-            width: 40px; height: 40px; background: rgba(255,255,255,0.1); color: var(--white); border-radius: 50%; margin-right: 10px; transition: var(--transition);
-        }
-        .social-links a:hover { background: var(--red-accent); transform: translateY(-3px); }
+        .footer-col ul li a:hover { color: var(--red); padding-left: 5px; }
 
-        .copyright { text-align: center; padding: 25px; font-size: 0.9rem; }
+        .newsletter input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--white);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3.5rem; }
-            .stats-section { grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 0; width: 100%; margin-left: 0; border-radius: 0; }
-            .stat-item:nth-child(2) { border-right: none; }
+            .stats-container { grid-template-columns: 1fr 1fr; gap: 30px; padding: 40px; }
+            .about-section { grid-template-columns: 1fr; gap: 50px; }
+            .about-img { order: -1; }
         }
 
         @media (max-width: 768px) {
-            .navbar { background: var(--blue-primary); padding: 15px 5%; }
-            .nav-menu {
-                position: absolute; top: 100%; left: 0; width: 100%;
-                background: var(--blue-primary);
-                flex-direction: column;
-                padding: 20px;
-                display: none;
-                text-align: center;
-            }
-            .nav-menu.active { display: flex; animation: slideDown 0.3s ease; }
-            .hamburger { display: block; }
-            
-            .hero { text-align: center; justify-content: center; }
+            .navbar { background-color: var(--navy); padding: 15px 20px; }
+            .nav-menu { display: none; } /* Hide menu for simplicity in this demo, real world needs JS toggle */
             .hero h1 { font-size: 2.8rem; }
-            .btn-group { justify-content: center; }
-            
-            .mission { grid-template-columns: 1fr; }
-            .mission-img { order: -1; }
-            
-            .connect-container { grid-template-columns: 1fr; }
-            .timeline::after { left: 31px; }
-            .event-node { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .event-node.left, .event-node.right { left: 0; text-align: left; }
-            .event-node::after { left: 21px; }
-            .event-node.right::after { left: 21px; }
-            
-            .footer-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            .stats-container { grid-template-columns: 1fr; margin-top: -50px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            section { padding: 80px 5%; }
         }
-
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <!-- PRELOADER -->
-    <div class="preloader">
-        <div class="loader-content">
-            <div class="loader-logo">Nations<span>Next</span></div>
-            <div class="spinner"></div>
-        </div>
-    </div>
-
     <!-- NAVBAR -->
     <nav class="navbar">
-        <a href="index.html" class="logo">Nations<span>Next</span></a>
+        <a href="index.html" class="logo">
+            Nations<span style="color:var(--red)">Next</span><div class="logo-dot"></div>
+        </a>
         
         <ul class="nav-menu">
-            <li><a href="index.html" class="nav-link" style="color:var(--red-accent)">Home</a></li>
+            <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="about.html" class="nav-link">About</a></li>
             <li><a href="submit.html" class="nav-link">Submit Idea</a></li>
             <li><a href="discover.html" class="nav-link">Discover</a></li>
             <li><a href="events.html" class="nav-link">Events</a></li>
-            <li><a href="faq.html" class="nav-link">FAQ</a></li>
-            <li><a href="connect.html" class="nav-link">Connect</a></li>
         </ul>
 
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
+        <a href="connect.html" class="nav-btn">Connect / Donate</a>
     </nav>
 
     <!-- HERO SECTION -->
     <header class="hero">
-        <div class="hero-shape shape-1"></div>
-        <div class="hero-shape shape-2"></div>
-        
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-            <div class="hero-tag">Democratizing Opportunity</div>
-            <h1>The Next Great American <br>Idea Starts Here.</h1>
-            <p>We bridge the gap between under-resourced youth visionaries and the benefactors ready to fund their future. Join the movement to unlock the potential of our nation.</p>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+            <span class="badge">Democratizing Opportunity</span>
+            <h1>The Next Great<br>American <span>Idea</span><br>Starts Here.</h1>
+            <p>We bridge the gap between under-resourced youth visionaries and the benefactors ready to fund their future.</p>
             
             <div class="btn-group">
-                <a href="submit.html" class="btn btn-red">I Have an Idea</a>
-                <a href="discover.html" class="btn btn-white">Support Youth</a>
+                <a href="submit.html" class="btn btn-primary">I Have an Idea</a>
+                <a href="discover.html" class="btn btn-outline">Support Youth</a>
             </div>
         </div>
     </header>
 
-    <!-- STATS COUNTER -->
-    <div class="stats-section" data-aos="fade-up" data-aos-offset="-50">
-        <div class="stat-item">
-            <h3 class="counter" data-target="15000">0</h3>
-            <p>Youth Connected</p>
-        </div>
-        <div class="stat-item">
-            <h3 class="counter" data-target="3400">0</h3>
-            <p>Ideas Funded</p>
-        </div>
-        <div class="stat-item">
-            <h3>$<span class="counter" data-target="5">0</span>M+</h3>
-            <p>Capital Raised</p>
-        </div>
-        <div class="stat-item">
-            <h3 class="counter" data-target="50">0</h3>
-            <p>States Active</p>
+    <!-- FLOATING STATS BAR -->
+    <div class="stats-wrapper">
+        <div class="stats-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-box">
+                <h3 class="counter" data-target="15000">0</h3>
+                <p>Youth Connected</p>
+            </div>
+            <div class="stat-box">
+                <h3 class="counter" data-target="3400">0</h3>
+                <p>Projects Funded</p>
+            </div>
+            <div class="stat-box">
+                <h3>$<span class="counter" data-target="5">0</span>M+</h3>
+                <p>Capital Raised</p>
+            </div>
+            <div class="stat-box">
+                <h3 class="counter" data-target="50">0</h3>
+                <p>States Active</p>
+            </div>
         </div>
     </div>
 
-    <!-- MISSION SECTION -->
-    <section class="mission">
-        <div class="mission-img" data-aos="fade-right">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Students collaborating">
+    <!-- ABOUT SECTION -->
+    <section class="about-section">
+        <div class="about-img" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Team meeting">
         </div>
-        <div class="mission-text" data-aos="fade-left">
-            <h4>Our Purpose</h4>
-            <h2>Talent is Universal. <br>Opportunity is Not.</h2>
-            <p>In every corner of our country, there are young minds with world-changing ideas—but without the zip code or network to bring them to life. NationsNext destroys these barriers.</p>
-            <p>We provide a professional, vetted platform where ambitious youth can showcase projects in STEM, Arts, Business, and Community Service directly to a network of verified donors and mentors.</p>
-            <a href="about.html" style="color: var(--red-accent); font-weight: 700; font-size: 0.9rem;">Read Our Full Mission <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
+        <div class="about-content" data-aos="fade-left">
+            <span style="color:var(--red); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:0.9rem;">Our Mission</span>
+            <h2>Talent is Universal.<br>Opportunity is Not.</h2>
+            <p>In every corner of our country, there are young minds with world-changing ideas—but without the network to bring them to life. NationsNext destroys these barriers.</p>
+            
+            <ul class="check-list">
+                <li><i class="fas fa-check"></i> Direct-to-youth funding (Zero overhead)</li>
+                <li><i class="fas fa-check"></i> Verified project tracking & updates</li>
+                <li><i class="fas fa-check"></i> Mentorship from industry leaders</li>
+            </ul>
+            
+            <a href="about.html" style="color: var(--navy); font-weight: 700; margin-top: 20px; display: inline-block; border-bottom: 2px solid var(--red);">Read Our Story</a>
         </div>
     </section>
 
-    <!-- DISCOVER PROJECTS -->
-    <section class="discover">
+    <!-- FEATURED PROJECTS -->
+    <section class="featured" style="background-color: #f1f5f9;">
         <div class="section-header" data-aos="fade-up">
-            <h2>Discover Tomorrow's Leaders</h2>
-            <p>Browse live projects created by youth from across the nation.</p>
+            <h2>Discover Potential</h2>
+            <p>Real projects, real people, real impact. Fund the future today.</p>
         </div>
 
-        <div class="card-grid">
+        <div class="featured-grid">
             <!-- Card 1 -->
-            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                <span class="card-badge">Technology</span>
-                <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a782?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Robotics" class="card-img">
-                <div class="card-content">
-                    <h3>The Bronx AI Initiative</h3>
-                    <p><strong>By: David M. (Age 17)</strong></p>
-                    <p>Creating an affordable AI learning lab for my high school to teach coding and machine learning.</p>
-                    <div class="fund-bar-bg"><div class="fund-bar-fill" style="width: 80%"></div></div>
-                    <div class="card-stats">
-                        <span>$4,000 Raised</span>
-                        <span>Goal: $5,000</span>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-img-wrapper">
+                    <span class="category-tag">STEM</span>
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Robotics">
+                </div>
+                <div class="card-body">
+                    <h3>The Bronx AI Lab</h3>
+                    <p>Building an accessible AI learning center for high school students in the Bronx.</p>
+                    <div class="progress-area">
+                        <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
+                        <div class="stats-row">
+                            <span>$3,750 Raised</span>
+                            <span>75%</span>
+                        </div>
                     </div>
                 </div>
+                <button class="card-btn">View Project</button>
             </div>
 
             <!-- Card 2 -->
-            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                <span class="card-badge">Environment</span>
-                <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Garden" class="card-img">
-                <div class="card-content">
-                    <h3>Clean Water for All</h3>
-                    <p><strong>By: Sarah J. (Age 16)</strong></p>
-                    <p>Developing a low-cost water filtration system prototype for rural communities using local materials.</p>
-                    <div class="fund-bar-bg"><div class="fund-bar-fill" style="width: 45%"></div></div>
-                    <div class="card-stats">
-                        <span>$1,350 Raised</span>
-                        <span>Goal: $3,000</span>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-img-wrapper">
+                    <span class="category-tag">Environment</span>
+                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Garden">
+                </div>
+                <div class="card-body">
+                    <h3>Urban Vertical Gardens</h3>
+                    <p>Solving food deserts in Chicago with sustainable vertical farming technology.</p>
+                    <div class="progress-area">
+                        <div class="progress-bar"><div class="progress-fill" style="width: 45%"></div></div>
+                        <div class="stats-row">
+                            <span>$1,350 Raised</span>
+                            <span>45%</span>
+                        </div>
                     </div>
                 </div>
+                <button class="card-btn">View Project</button>
             </div>
 
             <!-- Card 3 -->
-            <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                <span class="card-badge">Arts & Culture</span>
-                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Music" class="card-img">
-                <div class="card-content">
-                    <h3>Chicago Youth Orchestra</h3>
-                    <p><strong>By: Malik R. (Age 18)</strong></p>
-                    <p>Funding instruments and venue space for a student-led orchestra performing in underserved parks.</p>
-                    <div class="fund-bar-bg"><div class="fund-bar-fill" style="width: 92%"></div></div>
-                    <div class="card-stats">
-                        <span>$9,200 Raised</span>
-                        <span>Goal: $10,000</span>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-img-wrapper">
+                    <span class="category-tag">Music</span>
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Music">
+                </div>
+                <div class="card-body">
+                    <h3>Symphony for All</h3>
+                    <p>Providing instruments and free lessons to 50 students in Detroit.</p>
+                    <div class="progress-area">
+                        <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
+                        <div class="stats-row">
+                            <span>$9,000 Raised</span>
+                            <span>90%</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <div style="text-align: center; margin-top: 60px;">
-            <a href="discover.html" class="btn btn-red">View All Projects</a>
-        </div>
-    </section>
-
-    <!-- CONNECT / BENEFACTORS -->
-    <section class="connect">
-        <div class="connect-container">
-            <div class="connect-text" data-aos="fade-right">
-                <h2>Become a Benefactor</h2>
-                <p style="margin-bottom: 30px;">Directly impact the trajectory of a young person's life. Join our network of corporate partners, angel investors, and community leaders.</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> <span>Direct-to-youth funding (zero overhead).</span></li>
-                    <li><i class="fas fa-check"></i> <span>Verified project tracking and updates.</span></li>
-                    <li><i class="fas fa-check"></i> <span>Tax-deductible contributions.</span></li>
-                    <li><i class="fas fa-check"></i> <span>Mentorship opportunities.</span></li>
-                </ul>
-                <a href="connect.html" class="btn btn-white" style="margin-top: 20px;">Join Network</a>
-            </div>
-            
-            <div class="glass-form" data-aos="zoom-in">
-                <h3>Get Information</h3>
-                <form>
-                    <input type="text" placeholder="Full Name" class="form-input">
-                    <input type="email" placeholder="Email Address" class="form-input">
-                    <select class="form-input">
-                        <option>I want to Donate</option>
-                        <option>I want to Mentor</option>
-                        <option>I represent a Company</option>
-                    </select>
-                    <button class="btn btn-red" style="width: 100%; border:none;">Request Info</button>
-                </form>
+                <button class="card-btn">View Project</button>
             </div>
         </div>
     </section>
 
-    <!-- EVENTS TIMELINE -->
-    <section class="events-section">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Upcoming Events</h2>
-            <p>Connect with the community in person and online.</p>
-        </div>
-
-        <div class="timeline">
-            <div class="event-node left" data-aos="fade-right">
-                <div class="event-content">
-                    <span class="date">OCT 24, 2023 • VIRTUAL</span>
-                    <h4>National Pitch Competition</h4>
-                    <p>Watch 10 finalists present their ideas to a panel of sharks.</p>
-                </div>
-            </div>
-            <div class="event-node right" data-aos="fade-left">
-                <div class="event-content">
-                    <span class="date">NOV 12, 2023 • WASHINGTON D.C.</span>
-                    <h4>The Future Leaders Gala</h4>
-                    <p>A black-tie event celebrating our biggest success stories.</p>
-                </div>
-            </div>
-            <div class="event-node left" data-aos="fade-right">
-                <div class="event-content">
-                    <span class="date">DEC 05, 2023 • ONLINE WORKSHOP</span>
-                    <h4>Financial Literacy Bootcamp</h4>
-                    <p>Free workshop for all platform members on managing grant money.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section style="background-color: var(--off-white);">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Frequently Asked Questions</h2>
-        </div>
-        <div class="faq-container">
-            <div class="faq-item" data-aos="fade-up">
-                <div class="faq-question">
-                    Is NationsNext a non-profit?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes, we are a registered 501(c)(3) organization. All donations made through the platform are tax-deductible.</p>
-                </div>
-            </div>
-            <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="faq-question">
-                    How do you verify the projects?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>We require school ID, parental consent (if under 18), and a teacher or community leader reference for every project submitted.</p>
-                </div>
-            </div>
-            <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="faq-question">
-                    Does the platform take a fee?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>NationsNext takes a 0% platform fee from student projects. We rely on separate "tipping" from donors to keep the lights on.</p>
-                </div>
-            </div>
+    <!-- CALL TO ACTION -->
+    <section class="cta">
+        <div data-aos="zoom-in">
+            <h2>Join the Movement</h2>
+            <p>Whether you have an idea or the means to fund one, you belong here.</p>
+            <a href="connect.html" class="btn btn-primary" style="background: var(--white); color: var(--navy);">Get Started Now</a>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
-            <div class="footer-col">
-                <a href="#" class="logo" style="font-size: 1.5rem; margin-bottom: 15px; display:block;">Nations<span>Next</span></a>
-                <p>Building a stronger nation by empowering the next generation of creators, thinkers, and leaders.</p>
-                <div class="social-links" style="margin-top: 20px;">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
+            <div class="footer-info">
+                <a href="#" class="logo">Nations<span style="color:var(--red)">Next</span><div class="logo-dot"></div></a>
+                <p>Empowering the next generation of builders, dreamers, and leaders through connection and funding.</p>
             </div>
             <div class="footer-col">
                 <h4>Platform</h4>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="discover.html">Browse Projects</a></li>
-                    <li><a href="submit.html">Start a Project</a></li>
-                    <li><a href="connect.html">For Donors</a></li>
+                    <li><a href="discover.html">Projects</a></li>
+                    <li><a href="submit.html">Submit Idea</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Support</h4>
+                <h4>Company</h4>
                 <ul>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="faq.html">Help Center</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="connect.html">Contact</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
-                <p><i class="fas fa-envelope" style="margin-right:10px; color:var(--red-accent)"></i> hello@nationsnext.org</p>
-                <p><i class="fas fa-phone" style="margin-right:10px; color:var(--red-accent)"></i> (555) 123-4567</p>
-                <p style="margin-top: 10px; font-size: 0.8rem;">123 Innovation Drive,<br>Washington D.C., 20001</p>
+                <h4>Newsletter</h4>
+                <div class="newsletter">
+                    <input type="email" placeholder="Your email address">
+                    <button class="btn btn-primary" style="width:100%; padding:12px;">Subscribe</button>
+                </div>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2023 NationsNext Organization. All Rights Reserved.
+            &copy; 2023 NationsNext. All Rights Reserved.
         </div>
     </footer>
 
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 1. Remove Preloader
-        window.addEventListener('load', () => {
-            const preloader = document.querySelector('.preloader');
-            preloader.style.opacity = '0';
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
-        });
-
-        // 2. Initialize AOS (Animations)
+        // Init Animation
         AOS.init({
-            offset: 120,
+            offset: 100,
             duration: 800,
             easing: 'ease-out-cubic',
             once: true
         });
 
-        // 3. Navbar Scroll Effect
+        // Sticky Navbar Effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -879,66 +753,39 @@
             }
         });
 
-        // 4. Mobile Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const icon = hamburger.querySelector('i');
-            if(navMenu.classList.contains('active')){
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // 5. FAQ Accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                // Close others
-                faqItems.forEach(otherItem => {
-                    if(otherItem !== item) otherItem.classList.remove('active');
-                });
-                item.classList.toggle('active');
-            });
-        });
-
-        // 6. Number Counter Animation
+        // Animated Counters
         const counters = document.querySelectorAll('.counter');
-        let counted = false;
+        const speed = 200;
 
-        const animateStats = () => {
+        const animateCounters = () => {
             counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const duration = 2000; // 2 seconds
-                const increment = target / (duration / 16); // 60fps
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
 
-                let current = 0;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        counter.innerText = target.toLocaleString(); // Add commas
-                        clearInterval(timer);
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
                     } else {
-                        counter.innerText = Math.ceil(current).toLocaleString();
+                        counter.innerText = target;
                     }
-                }, 16);
+                };
+                updateCount();
             });
         };
 
-        const statsSection = document.querySelector('.stats-section');
+        // Trigger counters when scrolled into view
+        let counted = false;
+        const statsSection = document.querySelector('.stats-container');
         window.addEventListener('scroll', () => {
-            if(!statsSection) return;
-            const sectionPos = statsSection.getBoundingClientRect().top;
-            const screenPos = window.innerHeight;
-            if(sectionPos < screenPos && !counted) {
-                animateStats();
-                counted = true;
+            if (statsSection && !counted) {
+                const sectionPos = statsSection.getBoundingClientRect().top;
+                const screenPos = window.innerHeight;
+                if (sectionPos < screenPos) {
+                    animateCounters();
+                    counted = true;
+                }
             }
         });
     </script>
